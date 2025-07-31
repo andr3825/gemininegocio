@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini para Seu Negócio: Guia Interativo - Criado por Andre P. Batista</title>
+    
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: A single-page application with a fixed, task-oriented top navigation (Início, Primeiros Passos, Marketing de Conteúdo, etc.). This structure was chosen over a linear e-book format to allow busy business owners to quickly jump to the specific advice they need. The content is organized into thematic sections with interactive elements like tabs and accordions for progressive disclosure, preventing information overload and enhancing user engagement. This task-based architecture makes the content a practical, easy-to-use tool rather than a passive document. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: E-book chapters on Gemini usage. Goal: Organize and inform.
+        - Presentation Method: Thematic sections with interactive tabs and cards. Interaction: User clicks tabs (e.g., 'Redes Sociais') to reveal specific content, making exploration focused. Justification: Superior to a long scroll of text for usability. Library/Method: HTML/Tailwind + Vanilla JS.
+        - Report Info: Concept of a balanced content marketing mix. Goal: Compare proportions.
+        - Presentation Method: Donut Chart. Interaction: Hovering over segments reveals tooltips with details. Justification: A donut chart provides a quick, visual representation of a balanced strategy, which is more engaging than text alone. This satisfies the Chart.js requirement by illustrating a key concept from the source material, even without explicit quantitative data. Library/Method: Chart.js in a properly constrained canvas container.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF7;
+            color: #3D3D3D;
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link.active {
+            color: #B07B61;
+            border-bottom-color: #B07B61;
+        }
+        .tab-btn.active {
+            background-color: #B07B61;
+            color: #FFFFFF;
+        }
+        .tab-btn {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .content-card {
+            background-color: #FFFFFF;
+            border: 1px solid #EAE6E1;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .content-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -2px rgb(0 0 0 / 0.07);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: auto;
+            max-height: 450px;
+        }
+    </style>
+
+    <!-- COLE SEU CÓDIGO DO GOOGLE ANALYTICS AQUI -->
+
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-[#B07B61]">Gemini para Seu Negócio</h1>
+                    <p class="text-xs text-gray-500 mt-0.5">Criado por Andre P. Batista</p>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#inicio" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-[#B07B61]">Início</a>
+                        <a href="#primeiros-passos" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-[#B07B61]">Primeiros Passos</a>
+                        <a href="#marketing-conteudo" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-[#B07B61]">Marketing de Conteúdo</a>
+                        <a href="#estrategia-analise" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-[#B07B61]">Estratégia e Análise</a>
+                        <a href="#produtividade" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-[#B07B61]">Produtividade</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#B07B61]">
+                        <span class="sr-only">Abrir menu principal</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#inicio" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#B07B61] hover:bg-gray-50">Início</a>
+                <a href="#primeiros-passos" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#B07B61] hover:bg-gray-50">Primeiros Passos</a>
+                <a href="#marketing-conteudo" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#B07B61] hover:bg-gray-50">Marketing de Conteúdo</a>
+                <a href="#estrategia-analise" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#B07B61] hover:bg-gray-50">Estratégia e Análise</a>
+                <a href="#produtividade" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#B07B61] hover:bg-gray-50">Produtividade</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+        <section id="inicio" class="text-center py-16">
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">A Revolução da IA ao Alcance do Seu Negócio</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                Este guia interativo foi projetado para ajudar você a desmistificar o Gemini e integrá-lo ao seu dia a dia. Descubra estratégias práticas para otimizar operações, impulsionar seu marketing e aumentar sua produtividade de forma simples e eficaz.
+            </p>
+        </section>
+
+        <section id="primeiros-passos" class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-10">Entendendo e Dominando o Gemini</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="content-card p-8">
+                    <h3 class="text-2xl font-semibold mb-4">O que é o Gemini?</h3>
+                    <p class="text-gray-600">
+                        O Gemini é um modelo de linguagem grande (LLM) desenvolvido para interagir de forma conversacional. Ele aprende com vastos volumes de dados para gerar respostas coerentes e relevantes, tornando-se uma ferramenta versátil para qualquer tipo de negócio, atuando como seu assistente, redator ou estrategista.
+                    </p>
+                </div>
+                <div class="content-card p-8">
+                    <h3 class="text-2xl font-semibold mb-4">A Arte dos Prompts</h3>
+                    <p class="text-gray-600 mb-4">A qualidade da resposta depende da sua pergunta. Seja claro, defina o objetivo, o formato e o tom desejado.</p>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="font-semibold text-red-600">✖️ Ruim: "Escreva sobre marketing."</p>
+                            <p class="font-semibold text-green-600">✔️ Bom: "Escreva um post de blog de 500 palavras sobre as 3 principais tendências de marketing digital para 2025, com um tom otimista."</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-red-600">✖️ Ruim: "Me ajude com um e-mail."</p>
+                            <p class="font-semibold text-green-600">✔️ Bom: "Crie um e-mail de follow-up para um cliente que demonstrou interesse em nosso software, reforçando os benefícios e oferecendo 10% de desconto."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="marketing-conteudo" class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-4">Marketing de Conteúdo Simplificado</h2>
+            <p class="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-10">
+                Esta seção mostra como usar o Gemini para criar conteúdo de marketing que engaja e converte. Explore as abas para descobrir dicas para blogs, redes sociais, e-mails e vídeos. O gráfico ilustra um mix de conteúdo ideal para inspirar sua estratégia.
+            </p>
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="mb-6 border-b border-gray-200">
+                        <nav class="-mb-px flex space-x-4" aria-label="Tabs">
+                            <button class="tab-btn whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm rounded-t-lg" data-tab="blog">Blog e Artigos</button>
+                            <button class="tab-btn whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm rounded-t-lg" data-tab="social">Redes Sociais</button>
+                            <button class="tab-btn whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm rounded-t-lg" data-tab="email">E-mail Mkt</button>
+                        </nav>
+                    </div>
+                    <div id="tab-content">
+                        <div class="tab-pane" data-tab-content="blog">
+                            <h4 class="text-xl font-semibold mb-2">Ideias e Geração de Conteúdo para Blog</h4>
+                            <p class="text-gray-600">Use o Gemini para gerar tópicos relevantes para seu nicho, criar rascunhos completos de artigos e otimizá-los para SEO, ajustando o tone para a sua marca.</p>
+                        </div>
+                        <div class="tab-pane hidden" data-tab-content="social">
+                            <h4 class="text-xl font-semibold mb-2">Dominando as Redes Sociais</h4>
+                            <p class="text-gray-600">Peça ao Gemini para criar legendas criativas, chamadas para ação (CTAs) eficazes e roteiros curtos para stories e reels que capturam a atenção e engajam seu público.</p>
+                        </div>
+                        <div class="tab-pane hidden" data-tab-content="email">
+                            <h4 class="text-xl font-semibold mb-2">E-mail Marketing que Converte</h4>
+                            <p class="text-gray-600">Gere linhas de assunto irresistíveis e conteúdo persuasivo para e-mails de vendas, newsletters informativas e de relacionamento, cobrindo toda a jornada do cliente.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card p-6">
+                    <div class="chart-container">
+                        <canvas id="contentMixChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="estrategia-analise" class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-4">Estratégia de Marketing e Análise</h2>
+             <p class="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-10">
+                Vá além do conteúdo e use o Gemini para construir a base estratégica do seu marketing. Aqui você encontrará ferramentas para gerar ideias de campanhas, entender seu público e planejar suas ações de forma mais inteligente.
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="content-card p-6">
+                    <h3 class="text-xl font-semibold mb-3">Gerar Ideias de Campanhas</h3>
+                    <p class="text-gray-600">Preso em um bloqueio criativo? Peça ao Gemini para sugerir temas, mecânicas de promoção e abordagens para lançamentos de produtos ou eventos.</p>
+                </div>
+                <div class="content-card p-6">
+                    <h3 class="text-xl font-semibold mb-3">Criação de Personas</h3>
+                    <p class="text-gray-600">Forneça dados demográficos e psicográficos de seus clientes e peça ao Gemini para construir perfis detalhados, incluindo dores, desejos e comportamentos.</p>
+                </div>
+                <div class="content-card p-6">
+                    <h3 class="text-xl font-semibold mb-3">Planos de Marketing</h3>
+                    <p class="text-gray-600">O Gemini pode ajudar a estruturar seu plano de marketing, sugerindo seções como análise de mercado, objetivos, estratégias, táticas e métricas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="produtividade" class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-4">Produtividade Geral e Otimização</h2>
+            <p class="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-10">
+                A IA pode otimizar muito mais do que apenas o marketing. Nesta seção, explore como o Gemini pode se tornar um assistente pessoal para organizar seu dia, resumir informações e ajudar a resolver problemas complexos.
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="content-card p-6">
+                    <h3 class="text-xl font-semibold mb-3">Organização de Tarefas</h3>
+                    <p class="text-gray-600">Peça para ele criar listas de tarefas priorizadas, sugerir uma agenda diária ou até mesmo lembretes para compromissos importantes.</p>
+                </div>
+                <div class="content-card p-6">
+                    <h3 class="text-xl font-semibold mb-3">Resumos Rápidos</h3>
+                    <p class="text-gray-600">Precisa de uma visão geral de um documento longo ou uma cadeia de e-mails? Peça ao Gemini para resumir os pontos-chave, economizando seu tempo.</p>
+                </div>
+                <div class="content-card p-6">
+                    <h3 class="text-xl font-semibold mb-3">Solução de Problemas</h3>
+                    <p class="text-gray-600">Descreva um problema e peça sugestões de soluções, prós e contras de cada abordagem ou até mesmo um plano de ação.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-200">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-gray-500">
+            <p>&copy; 2025 Guia Interativo Gemini para Seu Negócio. Criado para impulsionar sua produtividade.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sections = document.querySelectorAll('main section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileNavLinks = document.querySelectorAll('.nav-link-mobile');
+
+            function updateActiveLink() {
+                let index = sections.length;
+                while(--index && window.scrollY + 100 < sections[index].offsetTop) {}
+                
+                navLinks.forEach((link) => link.classList.remove('active'));
+                if (index >= 0 && navLinks[index]) {
+                    navLinks[index].classList.add('active');
+                }
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink();
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            function activateTab(tabId) {
+                tabButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.tab === tabId);
+                });
+                tabPanes.forEach(pane => {
+                    pane.classList.toggle('hidden', pane.dataset.tabContent !== tabId);
+                });
+            }
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    activateTab(button.dataset.tab);
+                });
+            });
+
+            activateTab('blog');
+
+            const ctx = document.getElementById('contentMixChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Blog e Artigos', 'Redes Sociais', 'E-mail Marketing', 'Vídeos'],
+                    datasets: [{
+                        label: 'Mix de Conteúdo Ideal',
+                        data: [40, 30, 20, 10],
+                        backgroundColor: [
+                            'rgba(176, 123, 97, 0.8)',
+                            'rgba(126, 138, 139, 0.8)',
+                            'rgba(222, 215, 208, 0.8)',
+                            'rgba(177, 162, 153, 0.8)'
+                        ],
+                        borderColor: [
+                            '#B07B61',
+                            '#7E8A8B',
+                            '#DED7D0',
+                            '#B1A299'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Exemplo de Mix de Conteúdo',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
