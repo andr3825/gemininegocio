@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
-<<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PN28GCTMM2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-PN28GCTMM2');
-</script>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gemini para Seu Negócio: Guia Interativo - Criado por Andre P. Batista</title>
@@ -69,9 +61,27 @@
             height: auto;
             max-height: 450px;
         }
+        .btn-primary {
+            background-color: #B07B61;
+            color: #FFFFFF;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center; /* Centraliza o texto */
+            display: inline-block; /* Garante que o padding funcione corretamente */
+        }
+        .btn-primary:hover {
+            background-color: #926A54;
+            transform: translateY(-2px);
+        }
     </style>
 
-    <!-- COLE SEU CÓDIGO DO GOOGLE ANALYTICS AQUI -->
+    <!--
+        INSTRUÇÃO PARA O GOOGLE ANALYTICS 4 (GA4):
+        Cole aqui o código de rastreamento (a "Tag do Google") que você copiou do seu painel do Google Analytics.
+        Ele é um bloco de código JavaScript que começa com <script> e termina com </script>.
+    -->
 
 </head>
 <body class="antialiased">
@@ -90,6 +100,8 @@
                         <a href="#marketing-conteudo" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-[#B07B61]">Marketing de Conteúdo</a>
                         <a href="#estrategia-analise" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-[#B07B61]">Estratégia e Análise</a>
                         <a href="#produtividade" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-[#B07B61]">Produtividade</a>
+                        <!-- NOVO LINK PARA OUTRA PÁGINA -->
+                        <a href="sobre.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-[#B07B61]">Sobre</a>
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
@@ -109,6 +121,8 @@
                 <a href="#marketing-conteudo" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#B07B61] hover:bg-gray-50">Marketing de Conteúdo</a>
                 <a href="#estrategia-analise" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#B07B61] hover:bg-gray-50">Estratégia e Análise</a>
                 <a href="#produtividade" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#B07B61] hover:bg-gray-50">Produtividade</a>
+                <!-- NOVO LINK PARA OUTRA PÁGINA EM MOBILE -->
+                <a href="sobre.html" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#B07B61] hover:bg-gray-50">Sobre</a>
             </div>
         </div>
     </header>
@@ -224,6 +238,9 @@
                     <h3 class="text-xl font-semibold mb-3">Solução de Problemas</h3>
                     <p class="text-gray-600">Descreva um problema e peça sugestões de soluções, prós e contras de cada abordagem ou até mesmo um plano de ação.</p>
                 </div>
+            </div>
+            <div class="flex justify-center mt-12">
+                <a href="avancado.html" class="btn-primary">Use você mesmo a IA para o crescimento do seu negócio</a>
             </div>
         </section>
 
